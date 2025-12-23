@@ -3,7 +3,7 @@ Art neuro-symbolique : fusion des créativité de réseaux de neurones (Pytorch)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
-[![Discord](https://img.shields.io/discord/123456789.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/ZaDDDfmA)
+[![Discord](https://img.shields.io/discord/123456789.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.com/channels/1447270986889302121/1447270988822872179)
 
 ---
 

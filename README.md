@@ -31,4 +31,11 @@ Chaque œuvre est :
 | Matplotlib  | 3.7           | Visualisation des résultats.          |
 | IPFS/Pinata | -             | Stockage décentralisé des métadonnées.|
 | Solidity    | 0.8.0         | Contrats ERC-721 pour les NFTs.        |
-| Python      | 3.10          |                                       |
+
+[![Contrat déployé](https://img.shields.io/badge/Basescan-%235C2D91.svg?style=for-the-badge&logo=Basescan&logoColor=#b3b3b7)(https://basescan.org/address/0x218176f1618c2ce3a9c1850d6276ab862d728049)
+
+[![OpenSea](https://img.shields.io/badge/OpenSea-%232081E2.svg?style=for-the-badge&logo=opensea&logoColor=white)(https://opensea.io/collection/neurosymboracles)
+
+## Sécurité
+Audit Slither/Remix : clean (front-running & overflow fixés).
+

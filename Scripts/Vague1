@@ -1,0 +1,58 @@
+import torch
+import torch.nn.functional as F
+import matplotlib.pyplot as plt
+import sympy as sp
+import json
+import base64
+from io import BytesIO
+import os
+
+def generate_art(token_id):
+    # Exemple public : seed et transformation neural simplifiés (pas les params secrets réels)
+    torch.manual_seed(token_id)
+    latent = torch.randn(256).unsqueeze(0)  # demo
+    art = F.relu(torch.nn.Conv2d(1, 3, 5, padding=2)(latent.view(1,1,16,16))).squeeze()  # demo
+    art_np = art.detach().numpy().transpose(1,2,0)
+    art_np = (art_np - art_np.min()) / (art_np.max() - art_np.min())  # demo
+    plt.figure(figsize=(4,4))
+    plt.imshow(art_np)
+    plt.axis('off')
+    buf = BytesIO()
+    plt.savefig(buf, format='png', bbox_inches='tight', dpi=72)  # Low DPI eco
+    plt.close()
+    img_data = buf.getvalue()
+    return base64.b64encode(img_data).decode(), img_data
+
+def sympy_reasoning(token_id):
+    x = sp.symbols('x')
+    # Exemple public : équation basique
+    eq = sp.Eq(x**2 + token_id * x - 10, 0)  # Demo simple
+    solution = sp.solve(eq, x)
+    return f"Exemple solution alignée: {solution} (Harm=0)"
+
+def generate_nft(token_id):
+    art_b64, art_bytes = generate_art(token_id)
+    reasoning = sympy_reasoning(token_id)
+    meta = {
+        "name": f"NeuroSymb Core Oracle #{token_id}",
+        "description": "Vague 1: Art neuronal + Raisonnement symbolique éthique. Eco-generated.",
+        "image": f"data:image/png;base64,{art_b64}",
+        "attributes": [
+            {"trait_type": "Edition", "value": "Core Vague 1"},
+            {"trait_type": "Eco Mode", "value": "BytesIO + Low DPI"},
+            {"trait_type": "Reasoning", "value": "SymPy Aligned"}
+        ],
+        "sympy_module": reasoning
+    }
+    return meta, art_bytes
+
+# Génère seulement 2 exemples pour GitHub demo
+os.makedirs("examples/metadata", exist_ok=True)
+os.makedirs("examples/images", exist_ok=True)
+for token_id in range(1, 3):  # Limité pour public
+    meta, art_bytes = generate_nft(token_id)
+    with open(f"examples/metadata/{token_id}.json", "w") as f:
+        json.dump(meta, f, indent=2)
+    with open(f"examples/images/{token_id}.png", "wb") as f:
+        f.write(art_bytes)
+    print(f"Exemple NFT #{token_id} généré dans examples/.")
